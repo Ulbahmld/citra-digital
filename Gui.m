@@ -1,39 +1,39 @@
-function varargout = GeometriCitraGui(varargin)
-%GEOMETRICITRAGUI MATLAB code file for GeometriCitraGui.fig
-%      GEOMETRICITRAGUI, by itself, creates a new GEOMETRICITRAGUI or raises the existing
+function varargout = Gui(varargin)
+% GUI MATLAB code for Gui.fig
+%      GUI, by itself, creates a new GUI or raises the existing
 %      singleton*.
 %
-%      H = GEOMETRICITRAGUI returns the handle to a new GEOMETRICITRAGUI or the handle to
+%      H = GUI returns the handle to a new GUI or the handle to
 %      the existing singleton*.
 %
-%      GEOMETRICITRAGUI('Property','Value',...) creates a new GEOMETRICITRAGUI using the
-%      given property value pairs. Unrecognized properties are passed via
-%      varargin to GeometriCitraGui_OpeningFcn.  This calling syntax produces a
-%      warning when there is an existing singleton*.
+%      GUI('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in GUI.M with the given input arguments.
 %
-%      GEOMETRICITRAGUI('CALLBACK') and GEOMETRICITRAGUI('CALLBACK',hObject,...) call the
-%      local function named CALLBACK in GEOMETRICITRAGUI.M with the given input
-%      arguments.
+%      GUI('Property','Value',...) creates a new GUI or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before Gui_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to Gui_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help GeometriCitraGui
+% Edit the above text to modify the response to help Gui
 
-% Last Modified by GUIDE v2.5 03-Oct-2021 20:54:24
+% Last Modified by GUIDE v2.5 03-Oct-2021 22:19:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @GeometriCitraGui_OpeningFcn, ...
-                   'gui_OutputFcn',  @GeometriCitraGui_OutputFcn, ...
-                   'gui_LayoutFcn',  [], ...
+                   'gui_OpeningFcn', @Gui_OpeningFcn, ...
+                   'gui_OutputFcn',  @Gui_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
-   gui_State.gui_Callback = str2func(varargin{1});
+    gui_State.gui_Callback = str2func(varargin{1});
 end
 
 if nargout
@@ -44,27 +44,41 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before GeometriCitraGui is made visible.
-function GeometriCitraGui_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before Gui is made visible.
+function Gui_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   unrecognized PropertyName/PropertyValue pairs from the
-%            command line (see VARARGIN)
+% varargin   command line arguments to Gui (see VARARGIN)
 
-% Choose default command line output for GeometriCitraGui
+% Choose default command line output for Gui
 handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes GeometriCitraGui wait for user response (see UIRESUME)
+global a;
+global b;
+
+Mld = imread('mld.jpg');
+Mld1 = imread('mld1.jpg');
+
+a = rgb2gray(Mld);
+b = rgb2gray(Mld1);
+
+axes(handles.axes1);
+imshow(a);
+
+axes(handles.axes2);
+imshow(b);
+
+% UIWAIT makes Gui wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = GeometriCitraGui_OutputFcn(hObject, eventdata, handles)
+function varargout = Gui_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -72,7 +86,6 @@ function varargout = GeometriCitraGui_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-
 
 % --- PENJUMLAHAN
 function pushbutton1_Callback(hObject, eventdata, handles)
