@@ -22,7 +22,7 @@ function varargout = Gui(varargin)
 
 % Edit the above text to modify the response to help Gui
 
-% Last Modified by GUIDE v2.5 03-Oct-2021 22:19:05
+% Last Modified by GUIDE v2.5 03-Oct-2021 22:33:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -277,3 +277,4 @@ end
 
 axes(handles.axes3);
 imshow(uint8(q));
+
